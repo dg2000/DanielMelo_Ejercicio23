@@ -47,6 +47,10 @@ int main()
 
   double* original = new double[nx];
 
+  double* tiempos = new double[4];
+
+  tiempos[0] = 0.0;
+
   for (int i = 0; i < nx; i++)
     {
       viejo[i] = sin(2.0*pi*i*dx);
@@ -54,7 +58,7 @@ int main()
       
     }
 
-  while(t < 4950)
+  while(nuevo[n1] > -0.99999999)
      {
        
      
@@ -84,6 +88,7 @@ int main()
       if( nuevo[n1]-0.5 < 0.01 && primera)
 	{
 	  primera = false;
+	  tiempos[1] = t*dt;
 	  for(int i = 0; i < nx; i++)
 	    {
 	      segunda_foto[i] = nuevo[i];
@@ -92,12 +97,13 @@ int main()
 	}
 
 	
-	if( nuevo[n1]+0.5 > 0.01 && !primera && segunda)
+	if( nuevo[n1]+0.5 < 0.01 && !primera && segunda)
 	{
 	  segunda = false;
+	  tiempos[2] = t*dt;
 	  for(int i = 0; i < nx; i++)
 	    {
-	      tercera_foto[i] = -nuevo[i];
+	      tercera_foto[i] = nuevo[i];
 	    }
 
 	}
@@ -110,12 +116,14 @@ int main()
 	  viejo[i] = nuevo[i];
 	}
 
+      tiempos[3] = t*dt;
+
       t++;
     }
 
   for(int i = 0; i < nx; i++)
     {
-      cout << i*dx << " " << original[i] << " " << segunda_foto[i] << " " << tercera_foto[i] << " " << nuevo[i] << endl;
+      cout << i*dx << " " << original[i] << " " << segunda_foto[i] << " " << tercera_foto[i] << " " << nuevo[i] << " " << tiempos[i] << endl;
     }
 
   return 0;

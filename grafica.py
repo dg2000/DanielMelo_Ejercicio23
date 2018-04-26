@@ -14,11 +14,13 @@ tercera = np.loadtxt("datos.txt")[:, 3]
 
 final = np.loadtxt("datos.txt")[:, 4]
 
+tiempos = np.loadtxt("datos.txt")[:, 5]
 
-plt.plot(x, original, label="original")
-plt.plot(x, segunda, label="segunda")
-plt.plot(x, tercera, label="tercera")
-plt.plot(x, final, label="final")
+
+plt.plot(x, original, label="original con t = " + str(tiempos[0]))
+plt.plot(x, segunda, label="segunda con t = " + str(tiempos[1]))
+plt.plot(x, tercera, label="tercera con t = " + str(tiempos[2]))
+plt.plot(x, final, label="final con t = " + str(tiempos[3]))
 
 plt.legend()
 
